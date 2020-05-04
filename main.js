@@ -87,12 +87,19 @@ const speak = () => {
 
 };
 
-// textForm.addEventListener('submit', e => {
+textForm.addEventListener('submit', e => {
+  e.preventDefault();
+  speak();
+  textInput.blur();
+});
+
+// Speak Button
+
+// $("button").click( function() {
 //   e.preventDefault();
 //   speak();
 //   textInput.blur();
 // });
-
 
 
 // Rate value change!
