@@ -87,19 +87,45 @@ const speak = () => {
 
 };
 
-textForm.addEventListener('submit', e => {
-  e.preventDefault();
-  speak();
-  textInput.blur();
-});
-
-// Speak Button
-
-// $("button").click( function() {
+// textForm.addEventListener('submit', e => {
 //   e.preventDefault();
 //   speak();
 //   textInput.blur();
 // });
+
+// Speak Button
+//
+$("#speakbtn").click( function(e) {
+  e.preventDefault();
+  $('#pausebtn').text("Pause");
+  speak();
+  textInput.blur();
+});
+
+$('#pausebtn').click(function(e) {
+  e.preventDefault();
+
+  if($(this).text() == "Pause" && synth.speaking){
+    $(this).text("Play");
+    synth.pause();
+  }
+
+  else if($(this).text() == "Play"){
+    $(this).text("Pause");
+    synth.resume();
+  }
+
+  else {
+    alert("Can't Pause! 'coz nothing's playing!");
+  }
+})
+
+$('#cancelbtn').click(function(e){
+  e.preventDefault();
+  synth.cancel();
+  $('#pausebtn').text("Pause");
+})
+
 
 
 // Rate value change!
@@ -115,3 +141,4 @@ pitch.addEventListener('change', e => {
 // Voice Select Change
 
 voiceSelect.addEventListener('change', e => speak());
+
